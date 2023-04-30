@@ -1,9 +1,14 @@
 <?php
 
 class App {
+    protected $controller = 'Home';
+    protected $method = 'index';
+    protected $params = [];
     public function __construct() {
         $url = $this->parseURL();
-        var_dump($url);
+        if(file_exists('../app/controllers/'. $url[0]. '.php')){
+            $this->controller = $url[0];
+        }
     }
     public function parseURL() {
         if (isset($_GET['url'])) {
